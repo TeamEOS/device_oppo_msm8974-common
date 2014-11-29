@@ -165,7 +165,7 @@ endif
 
 # SELinux policies
 # qcom sepolicy
-include device/qcom/sepolicy/sepolicy.mk
+include device/qcom/sepolicy/Android.mk
 
 BOARD_SEPOLICY_DIRS += \
         device/oppo/msm8974-common/sepolicy
