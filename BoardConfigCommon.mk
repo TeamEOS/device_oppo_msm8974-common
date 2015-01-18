@@ -56,6 +56,7 @@ BOARD_USES_QCOM_HARDWARE := true
 # Audio
 BOARD_USES_ALSA_AUDIO := true
 AUDIO_FEATURE_ENABLED_MULTI_VOICE_SESSIONS := true
+AUDIO_FEATURE_ENABLED_HWDEP_CAL := true
 
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
@@ -64,6 +65,7 @@ QCOM_BT_USE_SMD_TTY := true
 BLUETOOTH_HCI_USE_MCT := true
 
 # Charger
+BOARD_CHARGER_DISABLE_INIT_BLANK := true
 BOARD_CHARGER_RES := device/oppo/msm8974-common/charger/images
 
 # CM Hardware
