@@ -275,6 +275,9 @@ on post-fs-data
     chown system graphics /sys/devices/virtual/graphics/fb0/panel_calibration
     chmod 0660 /sys/devices/virtual/graphics/fb0/panel_calibration
 
+    chown system system /sys/devices/virtual/graphics/fb0/dyn_pu
+    chmod 0660 /sys/devices/virtual/graphics/fb0/dyn_pu
+
     chown system system /sys/class/timed_output/vibrator/vtg_level
     chown system system /sys/class/timed_output/vibrator/vtg_max
     chown system system /sys/class/timed_output/vibrator/vtg_min
@@ -538,8 +541,10 @@ service qseecomd /system/bin/qseecomd
     user root
     group root
 
-service charger /charger
+service charger /sbin/healthd -c
     class charger
+    critical
+    seclabel u:r:healthd:s0
 
 service hvdcp /system/bin/hvdcp
     class core
@@ -555,6 +560,7 @@ on property:persist.usb.hvdcp.detect=false
 service qbcharger /charger -m 1
     disabled
     oneshot
+    seclabel u:r:healthd:s0
 
 on property:sys.qbcharger.enable=true
     start qbcharger
