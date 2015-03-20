@@ -34,7 +34,6 @@ TARGET_ARCH := arm
 TARGET_ARCH_VARIANT := armv7-a-neon
 TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
-TARGET_CPU_SMP := true
 TARGET_CPU_VARIANT := krait
 #TARGET_USE_QCOM_BIONIC_OPTIMIZATION := true
 
@@ -49,6 +48,11 @@ BOARD_KERNEL_SEPARATED_DT := true
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x02000000 --tags_offset 0x01e00000
 TARGET_KERNEL_SOURCE := kernel/oneplus/msm8974
 TARGET_KERNEL_ARCH := arm
+
+# Enable DIAG on debug builds
+ifneq ($(TARGET_BUILD_TYPE),user)
+TARGET_KERNEL_ADDITIONAL_CONFIG:= cyanogenmod_debug_config
+endif
 
 # Flags
 COMMON_GLOBAL_CFLAGS += -DNO_SECURE_DISCARD
@@ -136,9 +140,6 @@ PROTOBUF_SUPPORTED := true
 
 # ANT+
 BOARD_ANT_WIRELESS_DEVICE := "vfs-prerelease"
-
-# Enable Minikin text layout engine (will be the default soon)
-USE_MINIKIN := true
 
 # Include an expanded selection of fonts
 EXTENDED_FONT_FOOTPRINT := true
